@@ -133,22 +133,30 @@ function addProduct() {
                 <div class="card">
                     <div class="card-body">
                     <form id="formAddProduct">
-                        <div class="row">
+                        <div class="row mb-3">
                             <div class="col">
                                 <input type="text" id="nameProduct" class="form-control" placeholder="Nombre Producto" aria-label="First name" required>
                             </div>
                             <div class="col">
                                 <input type="number" id="precioProduct" class="form-control" placeholder="Precio" aria-label="Precio" required>
                             </div>
-                            <div class="col">
+                            
+                            
+
+                        </div>
+                        <div class="col mb-3">
+                                <div class="col">
                                 <input type="text" id="descripcionProduct" class="form-control" placeholder="Descripcion" aria-label="Descripcion" required>
                             </div>
-                            <div class="col">
+
+                        </div>
+                        <div class="col">
+                            <div class="col mb-3">
                                 <input type="text" id="categoriaProduct" class="form-control" placeholder="Categoria" aria-label="Categoria" required>
                             </div>
                             <div class="col">
                                 <input type="url" id="imageProduct" class="form-control" placeholder="Imagen" aria-label="Imagen" required>
-                            </div>
+                            </div>   
 
                         </div>
 

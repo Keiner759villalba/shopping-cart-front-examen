@@ -42,16 +42,19 @@ function getUsers(){
            
            
            `
-           response.body.forEach((user, index) => {
-            listUsers += `
+           response.body.users.forEach(user => {
+            listUsers = listUsers.concat(`
                 <tr>
-                    <th scope="row">${index + 1}</th>
-                    <td>${user.name.firstname}</td>
-                    <td>${user.name.lastname}</td>
-                    <td><button class="btn btn-primary" onclick="showInfoUser('${user.id}')">View</button></td>
-                </tr>
-            `
-        })
+                    <td>${user.id}</td>
+                    <td>${user.firstName}</td>
+                    <td>${user.lastName}</td>
+                    <td><img src="${user.image}" class="img-thumbnail" alt="Avatar Usuario"></td>
+                    <td><button type="button" class="btn btn-info" onclick="showInfoUser('${user.id}')">View</button></td>
+                
+                    </tr>
+                
+            `)
+       });
            listUsers = listUsers.concat(`
                 </tbody>
             </table>
