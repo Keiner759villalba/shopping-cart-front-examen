@@ -22,6 +22,7 @@ function getCarts() {
         .then(data => {
             if (data.status === 200) {
                 let listCarts = `
+                <button onclick="addCart()" type="button" class="btn btn-outline-success"><i class="fa-solid fa-user-plus"></i></button>
                 <table class="table">
                     <thead>
                         <tr>
@@ -120,7 +121,7 @@ function showCartInfo(user) {
 }
 function addCart() {
     const modalUserAdd = `
-        <div class="modal fade" id="showModalProductAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="showModalCartAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
             <div class="modal-header">
@@ -130,13 +131,13 @@ function addCart() {
             <div class="modal-body">
                 <div class="card">
                     <div class="card-body">
-                    <form id="formAddProduct">
+                    <form id="formAddCart">
                         <div class="row">
                             <div class="col">
-                                <input type="text" id="nameProduct" class="form-control" placeholder="Nombre Producto" aria-label="First name" required>
+                                <input type="number" id="idProduct" class="form-control" placeholder="Usuario ID" aria-label="First name" required>
                             </div>
                             <div class="col">
-                                <input type="number" id="precioProduct" class="form-control" placeholder="Precio" aria-label="Precio" required>
+                                <input type="number" id="chooseProduct" class="form-control" placeholder="Producto: (ingreselo en id)" aria-label="Precio" required>
                             </div>
                         </div>
 
@@ -144,7 +145,7 @@ function addCart() {
 
                         <div class="row mt-3 ">
                             <div class="col text-center">
-                                <button onclick="saveProduct()" type="button" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+                                <button onclick="saveCart()" type="button" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
                             </div>
                         </div> 
                     </form>
@@ -159,20 +160,20 @@ function addCart() {
         </div>
     `;
     document.getElementById('showModal').innerHTML = modalUserAdd;
-    const modal = new bootstrap.Modal(document.getElementById('showModalProductAdd'));
+    const modal = new bootstrap.Modal(document.getElementById('showModalCartAdd'));
     modal.show();
 }
 
-function saveCard() {
-    const form = document.getElementById('formAddProduct');
+function saveCart() {
+    const form = document.getElementById('formAddCart');
     if (form.checkValidity()) {
-        const productName = document.getElementById('nameProduct').value;
-        const cantidad = document.getElementById('precioProduct').value;
+        const idProduct = document.getElementById('idProduct').value;
+        const chooseProduct = document.getElementById('chooseProduct').value;
         
         
-        const product = {productName, cantidad};
+        const product = {idProduct, chooseProduct};
 
-        const REQRES_ENDPOINT = 'https://fakestoreapi.com/products'
+        const REQRES_ENDPOINT = 'https://fakestoreapi.com/carts'
         fetch(REQRES_ENDPOINT, {
             method: 'POST',
             headers: {
@@ -184,10 +185,10 @@ function saveCard() {
         .then((response) =>response.json().then(data => ({status: response.status, info: data})))
         .then(result => {
             if (result.status === 200) {
-                document.getElementById('info').innerHTML = '<h3 class="text-success"><i class="fa-solid fa-check"></i> El Producto se guardo correctamente</h3>';
+                document.getElementById('info').innerHTML = '<h3 class="text-success"><i class="fa-solid fa-check"></i> Se guardó en el carrito correctamente</h3>';
             } else {
-                document.getElementById('info').innerHTML = '<h3><i class="fa-solid fa-x"></i> No se guardo el producto en la api</h3>';
-                const modalId = document.getElementById('showModalProductAdd');
+                document.getElementById('info').innerHTML = '<h3><i class="fa-solid fa-x"></i> No se guardó</h3>';
+                const modalId = document.getElementById('showModalCartAdd');
                 const modal = bootstrap.Modal.getInstance(modalId);
                 modal.hide();
             }
