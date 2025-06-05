@@ -140,6 +140,16 @@ function addProduct() {
                             <div class="col">
                                 <input type="number" id="precioProduct" class="form-control" placeholder="Precio" aria-label="Precio" required>
                             </div>
+                            <div class="col">
+                                <input type="text" id="descripcionProduct" class="form-control" placeholder="Descripcion" aria-label="Descripcion" required>
+                            </div>
+                            <div class="col">
+                                <input type="text" id="categoriaProduct" class="form-control" placeholder="Categoria" aria-label="Categoria" required>
+                            </div>
+                            <div class="col">
+                                <input type="url" id="imageProduct" class="form-control" placeholder="Imagen" aria-label="Imagen" required>
+                            </div>
+
                         </div>
 
                        
@@ -170,9 +180,12 @@ function saveProduct() {
     if (form.checkValidity()) {
         const productName = document.getElementById('nameProduct').value;
         const cantidad = document.getElementById('precioProduct').value;
+        const descripcion = document.getElementById('descripcionProduct').value;
+        const categoria = document.getElementById('categoriaProduct').value;
+        const imagen = document.getElementById('imageProduct').value;
         
         
-        const product = {productName, cantidad};
+        const product = {productName, cantidad, descripcion, categoria, imagen};
 
         const REQRES_ENDPOINT = 'https://fakestoreapi.com/products'
         fetch(REQRES_ENDPOINT, {

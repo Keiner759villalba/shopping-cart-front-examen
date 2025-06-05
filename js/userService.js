@@ -48,7 +48,7 @@ function getUsers(){
                     <th scope="row">${index + 1}</th>
                     <td>${user.name.firstname}</td>
                     <td>${user.name.lastname}</td>
-                    <td><button class="btn btn-primary" onclick="getUser('${user.id}')">View</button></td>
+                    <td><button class="btn btn-primary" onclick="showInfoUser('${user.id}')">View</button></td>
                 </tr>
             `
         })
@@ -111,7 +111,7 @@ function showModalUser(user){
             <img src="${user.image}" class="card-img-top" alt="Avatar">
             <div class="card-body">
             <h5 class="card-title">User Info</h5>
-            <p class="card-text">First Name: ${user.firstName}</p>
+            <p class="card-text">First Name: ${user.first_name}</p>
             <p class="card-text">First Name: ${user.lastName}</p>
             <p class="card-text">First Name: ${user.email}</p>
 

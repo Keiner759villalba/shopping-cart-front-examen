@@ -59,5 +59,6 @@ function alertBuilder(alertType, message){
         
 function logout(){
     localStorage.removeItem('token');
+    
     location.href = '../index.html';
 }
