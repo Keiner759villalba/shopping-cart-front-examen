@@ -32,6 +32,7 @@ function login(userName, password){
                     alertBuilder(alertType, message);
                     
                         localStorage.setItem('token', data.token)
+                        
                     
                     setTimeout (() =>{
                         location.href = '../admin/dashboard.html';
